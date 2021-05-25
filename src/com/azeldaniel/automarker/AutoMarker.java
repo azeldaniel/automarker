@@ -108,12 +108,9 @@ public class AutoMarker {
                         String[] b = id.split("_");
                         List<String[]> deductions = this.getMarkChanges(b[b.length - 2]);
 
-                        int k;
-                        for (k = 0; k < folder.length() && !Character.isDigit(folder.charAt(k)); ++k) {
-                        }
-
-                        String f_a = String.join(" ", folder.substring(0, k).split("_"));
-                        String f_b = folder.substring(k - 1);
+                        String f_a = folder.substring(0, folder.lastIndexOf('/'));
+                        String f_b = folder.substring(folder.lastIndexOf('/'));
+                        f_b = f_b.replaceFirst("_", " ");
                         File directory = new File((f_a + f_b).replace("___", "-"));
                         if (!directory.exists()) {
                             directory.mkdir();
